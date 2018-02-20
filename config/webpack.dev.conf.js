@@ -18,7 +18,7 @@ const config = merge(baseWebpackConfig, {
         new webpack.HotModuleReplacementPlugin(),
         new htmlWebpackPlugin({
             env: 'shyis',
-            title: '这么神奇吗',
+            title: 'Frida-admin',
             template: 'src/entry/index.ejs'
         })
     ],
