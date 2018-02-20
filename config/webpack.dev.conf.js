@@ -14,7 +14,8 @@ const config = merge(baseWebpackConfig, {
             component: path.resolve(__dirname, '../src/component'),
             containers: path.resolve(__dirname, '../src/containers'),
             static: path.resolve(__dirname, '../src/static'),
-            utils: path.resolve(__dirname, '../src/utils')
+            utils: path.resolve(__dirname, '../src/utils'),
+            mock: path.resolve(__dirname, '../mock')
         }
     },
     plugins: [
@@ -87,16 +88,10 @@ const config = merge(baseWebpackConfig, {
         contentBase: path.resolve(webpackFile.devDirectory),
         historyApiFallback: true,
         disableHostCheck: true,
-        proxy: [
-            {
-                context: [
-                    '/api/**', '/u/**'
-                ],
-                target: 'http://127.0.0.1:3000',
-                secure: false
-            }
-        ],
-        /*换气浏览器，并打开本项目地址*/
+        proxy: {
+            "/api/*": "http://localhost:3000/api/"
+        },
+        /*唤起浏览器，并打开本项目地址*/
         // after() {     opn('http://localhost:' + this.port) }
     }
 })
