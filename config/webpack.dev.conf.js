@@ -4,11 +4,28 @@ const merge = require('webpack-merge') // webpack配置文件合并
 const path = require('path')
 const baseWebpackConfig = require('./webpack.base.conf.js') // 基础配置
 const webpackFile = require('./webpack.file.conf') // 文件路径配置
+const htmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = merge(baseWebpackConfig, {
+    plugins: [
+        /*设置开发环境*/
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('development')
+            }
+        }),
+        /*设置热更新*/
+        new webpack.HotModuleReplacementPlugin(),
+        new htmlWebpackPlugin({
+            env: 'shyis',
+            title: '这么神奇吗',
+            template: 'src/entry/index.ejs'
+        })
+    ],
     output: {
         filename: "bundle.js"
     },
+    devtool: 'inline-source-map',
     resolve: {
         alias: {
             component: path.resolve(__dirname, '../src/component'),
@@ -18,16 +35,6 @@ const config = merge(baseWebpackConfig, {
             mock: path.resolve(__dirname, '../mock')
         }
     },
-    plugins: [
-        /*设置开发环境*/
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: JSON.stringify('development')
-            }
-        }),
-        /*设置热更新*/
-        new webpack.HotModuleReplacementPlugin()
-    ],
     module: {
         rules: [
             {
@@ -93,6 +100,12 @@ const config = merge(baseWebpackConfig, {
         },
         /*唤起浏览器，并打开本项目地址*/
         // after() {     opn('http://localhost:' + this.port) }
+    },
+    node: {
+        dns: "mock",
+        fs: "empty",
+        path: true,
+        url: false
     }
 })
 

@@ -10,12 +10,12 @@ const dataSource = [{
   description: '用户能否自己修改密码',
   control: (<Switch />)
 }, {
-  key: '1',
+  key: '2',
   type: '修改密码',
   description: '用户能否自己修改密码',
   control: (<Switch />)
 }, {
-  key: '1',
+  key: '3',
   type: '修改密码',
   description: '用户能否自己修改密码',
   control: (<Switch />)
