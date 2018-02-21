@@ -17,9 +17,10 @@ const config = merge(baseWebpackConfig, {
         /*设置热更新*/
         new webpack.HotModuleReplacementPlugin(),
         new htmlWebpackPlugin({
-            env: 'shyis',
+            // env: process.env.NODE_ENV,
             title: 'Frida-admin',
-            template: 'src/entry/index.ejs'
+            template: 'src/entry/index.ejs',
+            dll: 'bundle.js'
         })
     ],
     output: {

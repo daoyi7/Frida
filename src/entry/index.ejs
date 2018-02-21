@@ -12,9 +12,9 @@
 
 <body>
   <div id="app"></div>
-  <!-- <script src="bundle.js"></script> -->
+  <script src="<%= htmlWebpackPlugin.options.dll %>"></script>
   <script>
-    console.log('当前环境：', `<%= htmlWebpackPlugin.options.env %>`);
+    {/* console.log('当前环境：', `<%= htmlWebpackPlugin.options.env %>`); */}
     console.log('webpackConfig：',<%=JSON.stringify(webpackConfig) %>);
     console.log('htmlWebpackPlugin',<%=JSON.stringify(htmlWebpackPlugin) %>);
   </script>
